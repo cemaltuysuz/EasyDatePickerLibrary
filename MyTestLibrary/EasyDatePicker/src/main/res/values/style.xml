@@ -5,7 +5,7 @@
         <item name="colorAccent">@color/green_500</item>
         <!--selected Item color-->
         <item name="colorControlActivated">@color/green_700</item>
-        <!-- arrow bordercolor -->
+        <!-- arrow bordercolor(<>)-->
         <item name="android:selectableItemBackgroundBorderless">@color/green_700</item>
         <!-- Highlight item color-->
         <item name="colorControlHighlight">@color/green_700</item>
@@ -15,12 +15,26 @@
         <item name="android:textColor">@color/grey_200</item>
         <!-- Week TextColor-->
         <item name="android:textColorSecondary">@color/white</item>
-        <!-- Calender Number color arrow color -->
+        <!-- Calender Number color arrow color (< >) -->
         <item name="android:textColorPrimary">@color/white</item>
         <!--day , month-->
         <item name="android:textColorPrimaryInverse">@color/white</item>
         <!-- year-->
         <item name="android:textColorSecondaryInverse">@color/green_500</item>
+
+        <item name="android:buttonBarPositiveButtonStyle">@style/positiveButton</item>
+
+        <item name="android:buttonBarNegativeButtonStyle">@style/negativeButton</item>
+
     </style>
+
+    <style name="positiveButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:backgroundTint">@color/green_700</item>
+    </style>
+
+    <style name="negativeButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
 
 </resources>
