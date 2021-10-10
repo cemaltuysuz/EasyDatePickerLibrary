@@ -9,13 +9,13 @@ package com.cemaltuysuz.easydatepicker
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.util.Log
-import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
  * In order to create a Date Picker dialog, we need to get activity information from the user.
  * */
-class EasyDatePicker (val activity:Activity) {
+class EasyDatePicker (val activity:Activity,) {
 
     /**
      * The user can create his own style if he wishes.
@@ -31,6 +31,22 @@ class EasyDatePicker (val activity:Activity) {
      * */
     private var listener: OnDateSelectListener? = null
 
+    fun setListener(listener: OnDateSelectListener):EasyDatePicker{
+        this.listener = listener
+        return this
+    }
+
+    /**
+     * The format in which the user-selected date will be converted.
+     * If the user does not specify, the local format is accepted.
+     * */
+    private var formatPattern = "yyyy-MM-dd"
+
+    fun setFormatType(type:String):EasyDatePicker{
+        this.formatPattern = type
+        return this
+    }
+
     /**
      * User can change default style
      * */
@@ -39,10 +55,7 @@ class EasyDatePicker (val activity:Activity) {
         return this
     }
 
-    fun setListener(listener: OnDateSelectListener):EasyDatePicker{
-        this.listener = listener
-        return this
-    }
+
 
     fun calendarShow(){
         val calendar = Calendar.getInstance()
@@ -55,6 +68,10 @@ class EasyDatePicker (val activity:Activity) {
         val datePicker = DatePickerDialog(
             this.activity, this.style,
             { _, year, month, dayOfMonth ->
+
+                // FormatDate
+                val formatDate = SimpleDateFormat(formatPattern, Locale.getDefault())
+
                 /**
                  * I get the incoming year, month and day information and
                  * set it to the Calendar object.
@@ -66,8 +83,14 @@ class EasyDatePicker (val activity:Activity) {
                  * I take the date information in date format and
                  * format it into String data type.
                  * */
-                val x = calendar.time
-                listener?.isSelected(DateFormat.getDateInstance().format(x)) // Send user
+
+                try {
+                    val formattedDate = formatDate.format(calendar.time) // Date Format
+                    listener?.isSelected(formattedDate) // Send user
+                }catch (e:Exception){
+                    Log.e("Date Format Exception :","${e.message}")
+                }
+
             }, year, month, day // Set current year / month / day
         )
         try {
@@ -77,7 +100,7 @@ class EasyDatePicker (val activity:Activity) {
             datePicker.show()
         }catch (e: Exception){
             // Print Log
-            Log.e("Easy date picker exception :", "ex : ${e.message}")
+            Log.e("Easy date picker exception :", "${e.message}")
         }
     }
 }

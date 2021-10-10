@@ -21,11 +21,10 @@
         <item name="android:textColorPrimaryInverse">@color/white</item>
         <!-- year-->
         <item name="android:textColorSecondaryInverse">@color/green_500</item>
-
+        <!-- Positive Button-->
         <item name="android:buttonBarPositiveButtonStyle">@style/positiveButton</item>
-
+        <!-- Negative Button-->
         <item name="android:buttonBarNegativeButtonStyle">@style/negativeButton</item>
-
     </style>
 
     <style name="positiveButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
