@@ -15,49 +15,42 @@ import java.util.*
 /**
  * In order to create a Date Picker dialog, we need to get activity information from the user.
  * */
-class EasyDatePicker (val activity:Activity,) {
+class EasyDatePicker (
+    private val activity:Activity,
+    private var style: Int = R.style.DefaultDatePickerStyle,
+    private var pattern:String = "yyyy-MM-dd",
+    private var listener: OnDateSelectListener? = null) {
 
     /**
      * The user can create his own style if he wishes.
      * Until then, the default style is considered selected.
      * @see R.style.DefaultDatePickerStyle
      * */
-    private var style:Int = R.style.DefaultDatePickerStyle
 
+    fun setDatePickerStyle(style:Int):EasyDatePicker{
+        this.style = style
+        return this
+    }
     /**
      * When the user completes the date selection process,
      * we send her the selected date information with interface.
      * @see OnDateSelectListener
      * */
-    private var listener: OnDateSelectListener? = null
-
     fun setListener(listener: OnDateSelectListener):EasyDatePicker{
         this.listener = listener
         return this
     }
-
     /**
      * The format in which the user-selected date will be converted.
      * If the user does not specify, the local format is accepted.
      * */
-    private var formatPattern = "yyyy-MM-dd"
 
     fun setFormatType(type:String):EasyDatePicker{
-        this.formatPattern = type
+        this.pattern = type
         return this
     }
 
-    /**
-     * User can change default style
-     * */
-    fun setDatePickerStyle(style:Int):EasyDatePicker{
-        this.style = style
-        return this
-    }
-
-
-
-    fun calendarShow(){
+    fun show(){
         val calendar = Calendar.getInstance()
 
         val year = calendar.get(Calendar.YEAR) // Current Year
@@ -70,7 +63,7 @@ class EasyDatePicker (val activity:Activity,) {
             { _, year, month, dayOfMonth ->
 
                 // FormatDate
-                val formatDate = SimpleDateFormat(formatPattern, Locale.getDefault())
+                val formatDate = SimpleDateFormat(pattern, Locale.getDefault())
 
                 /**
                  * I get the incoming year, month and day information and
@@ -99,7 +92,6 @@ class EasyDatePicker (val activity:Activity,) {
              * */
             datePicker.show()
         }catch (e: Exception){
-            // Print Log
             Log.e("Easy date picker exception :", "${e.message}")
         }
     }

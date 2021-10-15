@@ -23,9 +23,8 @@ class MainActivity : AppCompatActivity() {
                 })
 
 
-
         findViewById<Button>(R.id.showButton).setOnClickListener {
-            myDatePickerDialog.calendarShow()
+            myDatePickerDialog.show()
         }
 
     }
