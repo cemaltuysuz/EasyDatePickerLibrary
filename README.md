@@ -6,15 +6,15 @@ Download 🚀
 
 ```gradle
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    repositories {
+	...
+	maven { url 'https://jitpack.io' }
+    }
+}
 
 dependencies {
-	        implementation 'com.github.cemaltuysuz:EasyDatePickerLibrary:1.0'
-	}
+	implementation 'com.github.cemaltuysuz:EasyDatePickerLibrary:1.0'
+}
 ```
 
 Build 🏗️
