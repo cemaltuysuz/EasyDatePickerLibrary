@@ -118,3 +118,12 @@ Sample Style.xml
         <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
 ```
+
+
+
+License
+-------
+
+[LICENSE](https://github.com/cemaltuysuz/EasyDatePickerLibrary/blob/main/LICENSE)
+
+
